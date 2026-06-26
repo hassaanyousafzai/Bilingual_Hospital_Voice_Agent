@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GROQ_MODEL=${GROQ_MODEL:-llama-3.3-70b-versatile}
+      - GROQ_STT_MODEL=${GROQ_STT_MODEL:-whisper-large-v3-turbo}
+      - DATABASE_URL=sqlite:///./hospital_demo.db
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_URL=http://backend:8000
+    depends_on:
+      - backend
