@@ -1,18 +1,28 @@
+# Environment & Secrets
+.env
+.env.*
+*.env
+backend/.env
+frontend/.env
+frontend/.env.local
+*.pem
+*.key
+
 # Python
 backend/.venv/
+.venv/
+venv/
 __pycache__/
 *.pyc
 backend/*.db
-backend/.env
-
-.env.example
+*.sqlite3
 
 # Node / Next
 frontend/node_modules/
+node_modules/
 frontend/.next/
-frontend/.env
+frontend/tsconfig.tsbuildinfo
 
 # Misc
 .DS_Store
-
 .claude
