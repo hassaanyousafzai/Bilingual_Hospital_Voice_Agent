@@ -94,15 +94,15 @@ export default function AppointmentPage() {
           }
         },
         onError: (msg) => {
-          setNotice(
-            msg.includes("quota") || msg.includes("429")
-              ? language === "ar"
-                ? "تم تجاوز حصة الصوت المجانية مؤقتاً. حاول بعد دقيقة."
-                : "The free voice quota was hit briefly. Try again in a minute."
-              : language === "ar"
-              ? "تعذر الاتصال الصوتي. تأكد من تشغيل الخادم والسماح بالميكروفون."
-              : "Voice connection failed. Check the backend is running and mic is allowed."
-          );
+          if (msg && msg !== "connection_error" && msg !== "error") {
+            setNotice(msg);
+          } else {
+            setNotice(
+              language === "ar"
+                ? "تعذر الاتصال الصوتي. تأكد من تشغيل الخادم والسماح بالميكروفون."
+                : "Voice connection failed. Check the backend is running and mic is allowed."
+            );
+          }
         },
       });
     } catch {
